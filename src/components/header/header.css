@@ -1,0 +1,86 @@
+.header a,
+.header svg {
+  text-decoration: none;
+  color: rgb(66, 59, 59);
+  font-weight: bold;
+}
+
+.header a:hover,
+.header svg:hover {
+  color: rgb(139, 57, 57);
+}
+
+.header {
+  border-bottom: 1px solid gainsboro;
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.header ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.header li {
+  display: inline-block;
+  margin: 0 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+ul.right {
+  display: flex;
+}
+
+ul.right li {
+  margin-left: 50px;
+}
+
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  border-radius: 12%;
+  background-color: #f3f1f4;
+  width: 290%;
+}
+
+.header li.active .sub-menu {
+  display: block;
+}
+
+.sub-menu li:hover {
+  color: #ce1212;
+}
+
+.sub-menu li {
+  padding: 10px;
+  text-align: center;
+}
+
+.sub-menu li:first-child {
+  padding-top: 8px;
+}
+
+.sub-menu::after {
+  border-style: solid;
+  border-color: transparent transparent #f3f1f4 transparent;
+  border-width: 10px;
+  position: absolute;
+  bottom: 100%;
+  content: "";
+  width: 0;
+  height: 0;
+  left: 30px;
+
+}
+
+.sub-menu li:hover {
+  font-weight: bold;
+}

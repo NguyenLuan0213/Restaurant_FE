@@ -1,0 +1,62 @@
+.cart {
+    margin-top: 100px;
+}
+
+.cartItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 70%;
+}
+
+.cartItem img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.cartItem p {
+    margin: 0;
+    padding: 0;
+    margin-inline: 70px;
+    flex-grow: 1;
+    /* Cho phép các phần tử p mở rộng để lấp đầy không gian còn trống */
+}
+
+.cartItem input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Thêm kiểu cho phần tổng cộng (total) */
+.cartTotal {
+    margin-top: 20px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Trong file CSS của bạn hoặc trong thẻ <style> nếu bạn sử dụng CSS inline */
+.delete-button {
+    background-color: #ff0000;
+    /* Màu nền */
+    color: #ffffff;
+    /* Màu chữ */
+    border: none;
+    /* Loại bỏ đường viền */
+    padding: 5px 10px;
+    /* Kích thước nút */
+    cursor: pointer;
+    /* Biểu tượng con trỏ khi di chuyển qua nút */
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+    color: black;
+    /* Màu nền khi di chuột qua nút */
+}

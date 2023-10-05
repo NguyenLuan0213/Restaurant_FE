@@ -1,0 +1,29 @@
+div.bgMenu {
+    background-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 100%), 
+    url("/images/bgMenu.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #d2d2d2;
+    justify-content: space-around;
+    position: relative;
+    top: 40px;
+    margin-bottom: 50px;
+}
+
+div.bgMenu div.contents {
+    width:80%;
+}
+
+div.bgMenu div.contents div{
+    padding: 5px;
+}
+
+div.bgMenu div.contents div:last-child {
+    padding-bottom: 35px;
+}
+
+div.bgMenu span, div.bgMenu h2 {
+    font-weight: bold;
+    color: white;
+}

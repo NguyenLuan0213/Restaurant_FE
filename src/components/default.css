@@ -1,0 +1,26 @@
+.flex {
+    display: flex;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.custom-font {
+    font-family: 'Kalam', sans-serif;
+}
+
+.custom1-font {
+    font-family: 'Exo 2', sans-serif;
+}
+ 
+.header-font {
+  font-family: 'Mooli', sans-serif;
+}
+
+.p{
+    font-size: 27px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #777;
+}

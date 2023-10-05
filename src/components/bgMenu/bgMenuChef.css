@@ -1,0 +1,35 @@
+div.bgMenuChef {
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: black;
+    justify-content: space-around;
+    border-bottom: 1px solid rgb(237, 235, 235);
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.24), 0 2px 3px 0 rgba(0,0,0,0.19);
+}
+
+div.bgMenuChef > div:first-child {
+    width: 100%;
+}
+
+div.bgMenuChef img {
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.bgMenuChef div.contents {
+    width:100%;
+    padding-bottom: 10px;
+}
+
+.bgMenuChef div.contents div{
+    margin-top: 5px;
+    padding: 5px;
+}
+
+div.bgMenuChef span, div.bgMenuChef h2 {
+    font-weight: bold;
+    color: black;
+}
