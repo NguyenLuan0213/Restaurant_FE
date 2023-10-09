@@ -1,0 +1,106 @@
+.menu-items {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* margin-left: 10px; */
+}
+
+.menu-item {
+    background-color: #f3f5f5;
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+.menu-item img {
+    width: 100%;
+}
+
+.menu-item div {
+    /* margin-left: 100px; */
+}
+
+.menu-item h4 {
+    font-size: 22px;
+}
+.centered-content {
+    text-align: center;
+}
+
+.centered-content button {
+    background-color: #b6f3f8;
+    color: #000000;
+}
+
+.menu-item p {
+    color: #ce1212;
+    font-weight: bolder;
+    font-size: 18px;
+    /* margin-left: 30px; */
+}
+
+h2 {
+    text-align: center;
+    color: #ce1212;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+    padding: 0;
+    margin: 0 10px;
+}
+
+button:hover {
+    color: #ce1212;
+}
+
+.button-group {
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.button-group button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+    padding: 0;
+    margin: 0 10px;
+}
+
+.button-group button::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0;
+    background: #000;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s;
+}
+
+.image-container{
+    padding: 50px;
+}
+
+.button-group button.active::after {
+    width: 100%;
+    background: #ce1212;
+}
+
+.button-group button.active {
+    color: #ce1212;
+}
+
+.zoomable-image {
+    transition: transform 0.3s ease; /* Tạo hiệu ứng phóng to */
+    cursor: pointer; /* Biểu tượng con trỏ tay khi di chuột vào ảnh */
+}
+
+.zoomable-image:hover {
+    transform: scale(1.2); /* Phóng to ảnh lên 120% kích thước ban đầu khi di chuột vào */
+}

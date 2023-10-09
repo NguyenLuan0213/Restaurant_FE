@@ -1,0 +1,54 @@
+/* Bố cục của từng nhà hàng */
+.restaurant-details {
+    margin: 20px;
+    display: inline-block;
+    vertical-align: top;
+    width: calc(33.33% - 40px);
+    /* 33.33% để hiển thị 3 nhà hàng trên một hàng */
+    box-sizing: border-box;
+}
+
+/* Nền của thông tin nhà hàng */
+.restaurant-form-bg {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề nhà hàng */
+.restaurant-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Địa chỉ và mô tả */
+.restaurant-details span {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: block;
+    /* Để xuống dòng sau mỗi mục */
+}
+
+/* Ảnh nhà hàng */
+.image-container {
+    max-width: 100%;
+    max-height: 300px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* Để ảnh điền hết khung */
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.h2Custum {
+    font-size: 20px;
+    font-family: ui-monospace;
+    color: #3333d5;
+}

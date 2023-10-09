@@ -1,0 +1,241 @@
+.cart {
+    margin-top: 100px;
+}
+
+.cartItem {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 70%;
+}
+
+.name_of_product {
+    width: 9%;
+}
+
+.cartItemRow {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    /* Để các phần tử con bắt đầu từ bên trái */
+    margin-bottom: 10px;
+    /* Khoảng cách giữa các cartItem */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 95%;
+}
+
+.cartItemRow>div {
+    margin-bottom: 5px;
+    /* Khoảng cách giữa các phần tử con trong cartItemRow */
+}
+
+.input_count {
+    width: 10px;
+}
+
+.cartItemRow img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.cartItem p {
+    margin: 0;
+    padding: 0;
+    margin-inline: 70px;
+    flex-grow: 1;
+    /* Cho phép các phần tử p mở rộng để lấp đầy không gian còn trống */
+}
+
+.cartItem input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Thêm kiểu cho phần tổng cộng (total) */
+.cartTotal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Trong file CSS của bạn hoặc trong thẻ <style> nếu bạn sử dụng CSS inline */
+.delete-button {
+    background-color: #ff0000;
+    /* Màu nền */
+    color: #ffffff;
+    /* Màu chữ */
+    border: none;
+    /* Loại bỏ đường viền */
+    padding: 5px 10px;
+    /* Kích thước nút */
+    cursor: pointer;
+    /* Biểu tượng con trỏ khi di chuyển qua nút */
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+    color: black;
+    /* Màu nền khi di chuột qua nút */
+}
+
+.h2Custum {
+    font-size: 40px;
+    font-family: ui-monospace;
+    color: #3333d5;
+}
+
+.p-size {
+    font-size: 20px;
+    font-family: ui-monospace;
+    color: #3333d5;
+}
+
+.h3Custum {
+    text-align: center;
+    font-size: 25px;
+    font-family: ui-monospace;
+    color: #4cdf59;
+}
+
+.emptyCart {
+    text-align: center;
+    /* Căn giữa nội dung theo chiều ngang */
+    padding: 20px;
+    /* Khoảng cách giữa nội dung và viền */
+    border: 1px solid #ccc;
+    /* Đường viền */
+    background-color: #f2f2f2;
+    /* Màu nền */
+}
+
+.section-header h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.section-header {
+    font-size: 18px;
+    color: #777;
+}
+
+.reservation-img {
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    width: 50%;
+    object-fit: cover;
+}
+
+.reservation-form-bg {
+    background-color: #f8f9fa;
+    padding: 30px;
+    width: 50%;
+    font-family: sans-serif;
+}
+
+form .row {
+    margin-right: 37px;
+    margin-left: 1px;
+}
+
+form .col {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.between {
+    justify-content: space-between;
+    padding-right: 35px;
+}
+
+form input,
+form textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+form button {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #c82333;
+}
+
+.form-group textarea {
+    height: 150px;
+    width: 95%;
+    margin-left: 15px;
+}
+
+
+.error-message,
+.sent-message {
+    display: none;
+    font-size: 14px;
+}
+
+.error-message {
+    color: #dc3545;
+}
+
+.sent-message {
+    color: #28a745;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.textarea {
+    height: 150px;
+}
+
+.date-picker,
+.time-picker {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.remind {
+    padding-left: 10px;
+}
