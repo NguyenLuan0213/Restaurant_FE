@@ -1,23 +1,23 @@
 .testimonials {
     padding: 20px 0;
 }
-  
+
 .testimonials .section-header {
     margin-bottom: 40px;
     text-align: center;
 }
-  
+
 .testimonials .section-header h2 {
     font-size: 32px;
     margin-bottom: 20px;
     text-align: center;
     color: #ce1212;
 }
-  
+
 .testimonials .section-header p span {
     color: #ce1212;
 }
-  
+
 .testimonials .testimonial-item {
     background-color: #fff;
     padding: 5px;
@@ -26,34 +26,34 @@
     padding: 10px 0;
     width: 100px;
 }
-  
+
 .testimonials .testimonial-item .testimonial-content {
     font-style: italic;
     margin-bottom: 20px;
     width: 80%;
     margin-left: 150px;
 }
-  
+
 .testimonials .testimonial-item .testimonial-content p {
     color: #555;
     font-size: 18px;
     margin-bottom: 0;
 }
-  
+
 .testimonials .testimonial-item h3 {
     font-size: 24px;
     color: #343a40;
     margin: 10px 0 5px 0;
     text-align: right;
 }
-  
+
 .testimonials .testimonial-item h4 {
     font-size: 16px;
     color: #555;
     margin: 0;
     text-align: right;
 }
-  
+
 .testimonials .testimonial-item .stars {
     font-size: 24px;
     color: #ce1212;
@@ -62,17 +62,18 @@
 }
 
 .testimonials .col-content {
+    margin: 0 auto;
     width: 70%;
 }
-  
+
 .testimonials .testimonial-item .testimonial-img {
-    max-width: 150px; 
+    max-width: 150px;
     border: 1px solid rgb(210, 207, 207);
     border-radius: 50%;
-    margin-top: 10px; 
-    box-shadow: 0 5px 6px 0 rgba(0,0,0,0.24), 0 8px 10px 0 rgba(0,0,0,0.19);
-    width: 125%; 
-    margin-left: 10%; 
+    margin-top: 10px;
+    box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.24), 0 8px 10px 0 rgba(0, 0, 0, 0.19);
+    width: 125%;
+    margin-left: 10%;
 }
 
 .testimonials .slick-dots {
@@ -83,5 +84,3 @@
 .testimonials svg {
     color: #ce1212;
 }
-  
-  

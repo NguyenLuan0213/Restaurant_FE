@@ -14,18 +14,17 @@ const User = () => {
     useEffect(() => {
         const fetchUserFromCookie = () => {
             try {
-                const userData = Cookies.get("user"); // Lấy giá trị cookie "user"
+                const userData = Cookies.get("user");
                 if (userData) {
-                    const decodedUserData = decodeURIComponent(userData); // Giải mã dữ liệu cookie
-                    const userDataObject = JSON.parse(decodedUserData); // Chuyển dữ liệu thành đối tượng JavaScript
+                    const decodedUserData = decodeURIComponent(userData);
+                    const userDataObject = JSON.parse(decodedUserData);
                     setUser(userDataObject);
                     setLoading(false);
+                    console.log("User:", userDataObject);
                 } else {
                     setLoading(false);
-                    // Kiểm tra xem user có bằng null hay không
-                    if (!user) {
-                        // Nếu user là null, chuyển hướng về trang chủ
-                        useNavigate.push("/");
+                    if (!user) { // Sử dụng biến user thay vì userDataObject
+                        navigate("/");
                     }
                 }
             } catch (error) {
@@ -34,8 +33,12 @@ const User = () => {
             }
         };
 
-        fetchUserFromCookie();
+        if (!user) {
+            fetchUserFromCookie();
+        }
     }, [user, navigate]);
+
+
 
     if (loading) {
         // Hiển thị loading khi đang tải dữ liệu
@@ -52,7 +55,11 @@ const User = () => {
                                 <div className="col-sm-4 bg-c-lite-green user-profile">
                                     <div className="card-block text-center text-white">
                                         <div className="m-b-25">
-                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="User-Profile-Image" />
+                                            <img
+                                                src={user.image ? user.image : "https://img.icons8.com/bubbles/100/000000/user.png"}
+                                                className="img-radius"
+                                                alt="User-Profile-Image"
+                                            />
                                         </div>
                                         <h6 className="f-w-600">{user.fullName}</h6>
                                         <p>{user.roles.join(", ")}</p>
@@ -84,17 +91,6 @@ const User = () => {
                                                 <h6 className="text-muted f-w-400">{user.birthDay}</h6>
                                             </div>
                                         </div>
-                                        {/* <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6>
-                                        <div className="row">
-                                            <div className="col-sm-6">
-                                                <p className="m-b-10 f-w-600">Recent</p>
-                                                <h6 className="text-muted f-w-400">Sam Disuja</h6>
-                                            </div>
-                                            <div className="col-sm-6">
-                                                <p className="m-b-10 f-w-600">Most Viewed</p>
-                                                <h6 className="text-muted f-w-400">Dinoter husainm</h6>
-                                            </div>
-                                        </div> */}
                                         <ul className="social-link list-unstyled m-t-40 m-b-10">
                                             <li>
                                                 <a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true">

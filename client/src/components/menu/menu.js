@@ -100,7 +100,7 @@ const Menu = () => {
     <div className="container">
       <div className="content" style={{ marginTop: '100px' }}>
         <div>
-          <h2 style={{ fontSize: '32px', marginBottom: '20px', textAlign: 'center', color: '#ce1212' }}>Thực Đơn</h2>
+          <h2 style={{ fontSize: '32px', marginBottom: '20px', textAlign: 'center', color: '#ce1212', fontFamily: 'Kalam, sans-serif' }}>THỰC ĐƠN</h2>
           <p className="p custom-font ">thực đơn trong các nhà hàng <span style={{ color: '#ce1212' }}>của chúng tôi</span></p>
         </div>
 

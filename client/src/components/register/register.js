@@ -8,17 +8,19 @@ import Loading from '../layout/Loading';
 import e from 'cors';
 
 const Register = () => {
-  const [username, setUsername] = useState()
-  const [password, setPassword] = useState()
-  const [fullName, setFullName] = useState()
-  const [email, setEmail] = useState()
-  const [phoneNumber, setPhoneNumber] = useState()
-  const [address, setAddress] = useState()
-  const [gender, setGender] = useState()
-  const [birthday, setBirthday] = useState()
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [address, setAddress] = useState('');
+  const [gender, setGender] = useState('');
+  const [birthday, setBirthday] = useState('');
+  const [imageFile, setImageFile] = useState(null); // Thêm state cho tệp ảnh
   const [loading, setLoading] = useState(false);
   const [registryError, setRegistryError] = useState(false);
-  const [complete, setComplete] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Hàm kiểm tra mật khẩu
   const isPasswordValid = (value) => {
@@ -39,32 +41,35 @@ const Register = () => {
     return phoneNumberRegex.test(phoneNumber);
   };
 
+  // Xử lý sự kiện khi người dùng chọn tệp ảnh
+  const handleImageChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setImageFile(selectedFile);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (!isPasswordValid(password)) {
-      alert("Mật khẩu không đáp ứng yêu cầu: phải có ít nhất một chữ hoa, một chữ thường, một ký tự đặc biệt và một chữ số, và phải có ít nhất 6 ký tự.");
+      setErrorMessage("Mật khẩu không đáp ứng yêu cầu: phải có ít nhất một chữ hoa, một chữ thường, một ký tự đặc biệt và một chữ số, và phải có ít nhất 6 ký tự.");
       return;
     }
 
     if (!isUsernameValid(username)) {
-      alert("Tên người dùng chỉ được chứa chữ và số.");
+      setErrorMessage("Tên người dùng chỉ được chứa chữ và số.");
       return;
     }
 
     if (!isPhoneNumberValid(phoneNumber)) {
-      alert("Số điện thoại phải bắt đầu bằng số 0 và có từ 10 đến 11 chữ số");
+      setErrorMessage("Số điện thoại phải bắt đầu bằng số 0 và có từ 10 đến 11 chữ số");
       return;
     }
 
     const process = async () => {
       try {
-        setLoading(true)
+        setLoading(true);
 
-        let formData = new FormData()
-        let res = null
-        // Tạo một đối tượng formData để chứa dữ liệu
+        let formData = new FormData();
         var roles = ["CUSTOMER"];
         formData.append("username", username);
         formData.append("password", password);
@@ -74,30 +79,37 @@ const Register = () => {
         formData.append("birthDay", birthday);
         formData.append("address", address);
         formData.append("gender", gender);
+        formData.append("file", imageFile, imageFile.name);
         formData.append("roles", roles);
-        res = await apis.post(endpoints['register'], formData, {
+
+        // Thêm tệp ảnh vào FormData nếu có
+        if (imageFile) {
+          formData.append("image", imageFile); // Đặt tên là "image" cho tệp ảnh
+        }
+
+        const res = await apis.post(endpoints['register'], formData, {
           headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        // Thực hiện gửi dữ liệu đăng ký lên server ở đây
-        // Sử dụng axios hoặc fetch để thực hiện HTTP request
+            'Content-Type': 'multipart/form-data',
+          },
+        });
 
+        // Xử lý phản hồi từ máy chủ
         console.log(res.data);
-
-        setComplete(true);
+        setRegistrationSuccess(true);
       } catch (ex) {
         console.error(ex);
         setRegistryError(true);
+        setErrorMessage("Đăng ký thất bại, bạn nhập thiếu hoặc đã đăng ký");
       } finally {
         setLoading(false);
       }
     };
-    process()
+    process();
   };
 
-  if (complete) {
-    return (<Navigate to='/login' />); // Sử dụng navigate để chuyển hướng đến trang login
+  if (registrationSuccess) {
+    alert("Đăng ký thành công!");
+    return <Navigate to="/login" />;
   }
 
   return (
@@ -109,6 +121,18 @@ const Register = () => {
               <div className="card-body p-4 p-sm-5">
                 <p className='p custom-font' style={{ margin: '20px 0' }}> ĐĂNG KÝ</p>
                 <form onSubmit={handleSubmit}>
+                  {/* Trường tải lên tệp ảnh */}
+                  <div className="form-floating">
+                    <input
+                      type="file"
+                      className="form-control"
+                      id="image"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      required
+                    />
+                    <label htmlFor="image">Ảnh đại diện</label>
+                  </div>
                   <div className="form-floating">
                     <input
                       type="text"
@@ -228,7 +252,7 @@ const Register = () => {
                   <div className="row justify-content-center mt-3">
                     {loading && <Loading />}
                     <button type="submit" className="btn btn-lg btn-primary btn-login fw-bold text-uppercase ">ĐĂNG KÝ</button>
-                    {registryError && <p className="text-danger">Đăng kí thất bại, bạn nhập thiếu hoặc đã đăng kí</p>}
+                    {registryError && <p className="text-danger">{errorMessage}</p>}
                   </div>
                   <div className='flex content-link mt-3'>Bạn Đã Có Tài Khoản &ensp;<a className="link" href="/login"> Đăng nhập</a></div>
                 </form>

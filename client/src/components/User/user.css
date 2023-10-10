@@ -133,3 +133,11 @@ h6 {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+
+.img-radius {
+    border-radius: 5px;
+    width: 100px;
+    /* Đặt chiều rộng ảnh theo mong muốn */
+    height: 100px;
+    /* Đặt chiều cao ảnh theo mong muốn */
+}
