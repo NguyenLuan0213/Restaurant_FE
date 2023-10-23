@@ -1,4 +1,5 @@
 # 💖Chào mọi người đén với Website đặt bàn nhà hàng💖
+- Đây là dự án đặt bàn ăn nhà hàng trực tuyến được xây dựng bằng Reactjs, sử dụng các công nghệ mới nhất để mang lại trải nghiệm tốt nhất cho người dùng. Trang web có tính năng thanh toán trực tuyến sử dụng Stripe, cho phép khách hàng thanh toán dễ dàng và an toàn.
 
 # Đầu tiên để chạy được dự án, mọi người cần phải:
 - Cài trước vscode
