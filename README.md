@@ -6,7 +6,7 @@
 - Kiểm tra Node.js v16.17.0
 
 # Các bước chạy project
-1 : Tải project project:
+1 : Tải project:
 
 - Bật Git Bash Here ở thư mục chứa và nhập lệnh dưới:
 ```
