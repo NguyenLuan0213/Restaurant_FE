@@ -1,4 +1,4 @@
-# 💖 Chào mọi người đén với Website đặt bàn nhà hàng💖
+# 💖Chào mọi người đén với Website đặt bàn nhà hàng💖
 
 # Đầu tiên để chạy được dự án, mọi người cần phải:
 - Cài trước vscode
@@ -27,7 +27,7 @@ Khi chạy dự án, nó sẽ lấy dữ liệu từ dự án BE đã chạy tr�
 
 # Preview
 
-1 : Bạn sẽ được vào website của FE khách hàng
+Bạn sẽ được vào website của FE khách hàng
 
 Cảm ơn bạn đã kiểm tra dự án của tôi! Nếu bạn có bất kỳ ý kiến ​​​​hoặc phản hồi nào, vui lòng liên hệ với tôi. Tôi luôn mong nhận được ý kiến ​​từ mọi người để hoàn thiện dự án của mình hơn.. ❤️‍🔥❤️‍🔥
 
