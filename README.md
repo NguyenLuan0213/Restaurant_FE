@@ -8,9 +8,9 @@
 # Các bước chạy project
 1 : Tải project project:
 
-- Bật Git Bash Here ở thư mục chứa
+- Bật Git Bash Here ở thư mục chứa và nhập lệnh dưới:
 ```
-$ Nhập lệnh: git clone https://github.com/NguyenLuan0213/Restaurant_FE.git
+git clone https://github.com/NguyenLuan0213/Restaurant_FE.git
 ```
 - Chờ tải về hoàn tất
 2 : Mở VSCODE, và mở forder Restaurant_FE nằm trong thư mục chứa hồi nãy, bật Terminal và nhập các lệnh  
