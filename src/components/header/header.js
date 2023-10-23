@@ -52,19 +52,13 @@ const Header = () => {
                   <li><a href="/menu" className="nav-link px-2 link-dark">Thực đơn</a></li>
                   <li><a href="/restaurant" className="nav-link px-2 link-dark">Nhà Hàng</a></li>
                   <li><a href="/pay" className="nav-link px-2 link-dark">Đơn hàng</a></li>
-                  <li><a href="/payment" className="nav-link px-2 link-dark">Thanh toán</a></li>
-                  {user !== null && user.roles !== null ? (
-                    <></>
-                  ) : (
-                    <></>
-                  )}
                 </ul>
               </div>
 
               <div>
                 <ul className='d-flex align-items-center ml-auto mt-2'>
                   <li>
-                    <a href="/cart" className="nav-link px-2 link-dark ">
+                    <a href="/cartOrder" className="nav-link px-2 link-dark ">
                       <img src="https://res.cloudinary.com/dkba7robk/image/upload/v1696476312/rmixzhdffpsvio62we2u.jpg" alt="Icon" width="35" height="28" />
                     </a>
                   </li>
@@ -92,7 +86,7 @@ const Header = () => {
                       <Dropdown className="text-end me-lg-3 ml-3">
                         <span className="navbar-text mx-2">Chào {user.fullName}</span>
                         <Dropdown.Toggle variant="link" id="dropdownUser1">
-                          <img src="https://res.cloudinary.com/dkba7robk/image/upload/v1696386492/mskntwukg5041d2flo2n.png" alt="mdo" width="32" height="32" className="rounded-circle" />
+                          <img src={user.image} alt="mdo" width="32" height="32" className="rounded-circle" />
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                           <Dropdown.Item href="#">CHỈNH SỬA</Dropdown.Item>

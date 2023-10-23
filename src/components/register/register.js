@@ -94,7 +94,6 @@ const Register = () => {
         });
 
         // Xử lý phản hồi từ máy chủ
-        console.log(res.data);
         setRegistrationSuccess(true);
       } catch (ex) {
         console.error(ex);

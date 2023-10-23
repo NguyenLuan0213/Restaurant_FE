@@ -70,7 +70,7 @@ const Tables = () => {
             setSelectionMessage(`Bàn ${table.tableNumber} đã được chọn thành công.`);
         } else {
             // Hiển thị thông báo "Chưa đặt"
-            setSelectionMessage(`Bàn ${table.tableNumber} đã được đặt.`);
+            setSelectionMessage(`Bàn ${table.tableNumber} đã được đặt. Mời bạn chọn bàn khác.`);
         }
     };
 
@@ -98,18 +98,18 @@ const Tables = () => {
             ) : (
                 <>
                     {selectionMessage && (
-                        <div className="text-center mt-2">
-                            <p>{selectionMessage}</p>
+                        <div className="text-center mt-2" style={{ fontSize: "20px", color: "blue" }}>
+                            <span>{selectionMessage}</span>
                         </div>
                     )}
                     <table className="table">
-                        <tbody>
+                        <tbody >
                             {tables.map((table, index) => (
                                 <React.Fragment key={table.id}>
                                     {index % 5 === 0 && <tr key={`row-${index / 5}`}></tr>}
                                     <td>
                                         <div>
-                                            <button
+                                            <button style={{ width: "90%" }}
                                                 type="button"
                                                 className={`btn ${table.status === 'Chưa đặt' ? 'btn-success' : 'btn-danger'}`}
                                                 onClick={() => handleTableButtonClick(table)}

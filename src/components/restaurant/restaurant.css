@@ -1,5 +1,6 @@
 /* Bố cục của từng nhà hàng */
 .restaurant-details {
+    width: 100% !important;
     margin: 20px;
     display: inline-block;
     vertical-align: top;
@@ -35,7 +36,6 @@
 /* Ảnh nhà hàng */
 .image-container {
     max-width: 100%;
-    max-height: 300px;
     overflow: hidden;
     margin: 0 auto;
 }
@@ -43,7 +43,7 @@
 /* Để ảnh điền hết khung */
 .image-container img {
     max-width: 100%;
-    max-height: 100%;
+    height: auto;
     object-fit: cover;
 }
 
@@ -51,4 +51,8 @@
     font-size: 20px;
     font-family: ui-monospace;
     color: #3333d5;
+}
+
+.restaurant .flex {
+    display: block;
 }

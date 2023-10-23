@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loading from '../layout/Loading';
 import apis, { authAPI, endpoints } from '../configs/api';
-import './cart.css';
+import './cartOrder.css';
 import Cookies from 'js-cookie'; // Import thư viện js-cookie
 import { format, addHours, isAfter, isBefore } from 'date-fns'; // Import thư viện date-fns
-import { ro } from 'date-fns/locale';
-import e from 'cors';
 
 const isBookingValid = (selectedDateTime) => {
     // Lấy thời gian hiện tại
@@ -17,7 +15,7 @@ const isBookingValid = (selectedDateTime) => {
     return isAfter(selectedDateTime, minimumBookingTime);
 };
 
-const Cart = () => {
+const OrderCart = () => {
     const [formValid, setFormValid] = useState(false);
     const [cart, setCart] = useState([]);
     const [table, setTable] = useState([]);
@@ -117,7 +115,6 @@ const Cart = () => {
             }));
         }
     }, []);
-    console.log(formData)
 
     const handlePayment = async () => {
         // Kiểm tra nếu giỏ hàng hoặc thông tin bàn bị rỗng
@@ -146,6 +143,11 @@ const Cart = () => {
                 var totalPriceOrder = cart.reduce((total, item) => total + item.count * item.price, 0)
                 var newMeanItems = []; // Khởi tạo mảng mới để chứa các đối tượng mean item
 
+                var Idcashier = null;
+                if (formData.role === "CASHIER") {
+                    Idcashier = formData.id
+                }
+                console.log(Idcashier)
                 // Duyệt qua user để lấy thông tin user
                 var user = null;
                 console.log(formData.id)
@@ -187,7 +189,7 @@ const Cart = () => {
                     orderTime: date,
                     status: statusOrder,
                     totalPrice: totalPriceOrder,
-                    cashierId: null,
+                    cashierId: Idcashier,
                     meanItems: newMeanItems,
                     customer: user
                 };
@@ -392,4 +394,4 @@ const Cart = () => {
     );
 };
 
-export default Cart;
+export default OrderCart;

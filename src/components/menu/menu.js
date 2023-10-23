@@ -133,7 +133,7 @@ const Menu = () => {
               </div>
               <div className="centered-content">
                 <h4>{item.name}</h4>
-                <p className="price">{item.price} VNĐ</p>
+                <p className="price">{item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</p>
               </div>
               <div className="centered-content">
                 <button className='btn btn-info' onClick={() => addToCart(item)}>

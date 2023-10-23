@@ -2,6 +2,14 @@
     margin-top: 10px;
 }
 
+.about p {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ce1212;
+    padding-bottom: 20px;
+    margin: 10px;
+}
+
 .about .container {
     background-color: #fef1df;
     padding-top: 1px;
@@ -9,18 +17,18 @@
 
 .about .about-img {
     min-height: 400px;
-    width: 90%;
+    width: 80%;
     position: relative;
     margin-left: 10px;
     object-fit: cover;
 }
-  
+
 .about h3 {
     font-weight: 700;
     font-size: 36px;
     margin-bottom: 30px;
 }
-  
+
 .about .call-us {
     left: 14%;
     right: 10%;
@@ -31,26 +39,26 @@
     width: 70%;
     height: 20%;
 }
-  
-.about .call-us > div {
+
+.about .call-us>div {
     font-size: 24px;
     font-weight: 700;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 20px;
 }
-  
+
 .about .call-us p {
     font-size: 27px;
     font-weight: 700;
     color: #ce1212;
     padding-bottom: 20px;
-    margin: 10px ;
+    margin: 10px;
 }
 
 .about .img-play {
     margin-left: 50px;
 }
-  
+
 .about .content {
     width: 90%;
     margin-left: 30px;
@@ -60,7 +68,7 @@
     list-style: none;
     padding: 0;
 }
-  
+
 .about .content ul li {
     padding: 0 0 8px 20px;
     text-indent: -15px;
@@ -70,11 +78,11 @@
 .about .content ul li span {
     font-weight: 600;
 }
-  
+
 .about .content p:last-child {
     margin-bottom: 0;
 }
-  
+
 .about .play-btn {
     width: 94px;
     height: 94px;
@@ -86,7 +94,7 @@
     top: 64rem;
     overflow: hidden;
 }
-  
+
 .about .play-btn:before {
     content: "";
     position: absolute;
@@ -104,7 +112,7 @@
     left: -15%;
     background: rgba(198, 16, 0, 0);
 }
-  
+
 .about .play-btn:after {
     content: "";
     position: absolute;
@@ -119,7 +127,7 @@
     z-index: 100;
     transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
-  
+
 .about .play-btn:hover:before {
     content: "";
     position: absolute;
@@ -136,21 +144,25 @@
     animation: none;
     border-radius: 0;
 }
-  
+
 .about .play-btn:hover:after {
     border-left: 15px solid #ce1212;
     transform: scale(20);
 }
-  
+
 @keyframes pulsate-btn {
     0% {
-      transform: scale(0.6, 0.6);
-      opacity: 1;
+        transform: scale(0.6, 0.6);
+        opacity: 1;
     }
-  
+
     100% {
-      transform: scale(1, 1);
-      opacity: 0;
+        transform: scale(1, 1);
+        opacity: 0;
     }
-} 
-  
+}
+
+.about .play-btn {
+    margin-top: 90px;
+    margin-left: -100px;
+}

@@ -31,20 +31,21 @@ const Restaurant = () => {
           <h2 className='h2Custum'>THÔNG TIN CÁC NHÀ HÀNG</h2>
         </div>
 
-        <div className="flex">
-          {restaurants.map((restaurant) => (
+        {restaurants.map((restaurant) => (
+          <div className="flex">
             <div key={restaurant.id} className="restaurant-details row-wrap">
               <div className="restaurant-form-bg">
                 <h2>{restaurant.name}</h2>
                 <span><strong>Address:</strong> {restaurant.address}</span>
                 <span><strong>Description:</strong> {restaurant.description}</span>
-                <div className="image-container">
+                <div className="image-container" style={{ paddingTop: "10px" }}>
                   <img src={restaurant.image} alt={restaurant.name} />
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+
+          </div>
+        ))}
       </div>
     </section>
   );
