@@ -9,8 +9,9 @@
 
 - Bật Git Bash Here ở thư mục chứa
 ```
-$ Nhập lệnh: git clone https://github.com/NguyenLuan0213/Restaurant_FE.git và chờ tải về hoàng tất
+$ Nhập lệnh: git clone https://github.com/NguyenLuan0213/Restaurant_FE.git
 ```
+- Chờ tải về hoàn tất
 2 : Mở VSCODE, và mở forder Restaurant_FE nằm trong thư mục chứa hồi nãy, bật Terminal và nhập các lệnh  
 ```
 npm install 
