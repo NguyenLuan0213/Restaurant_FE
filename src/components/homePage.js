@@ -4,15 +4,18 @@ import AboutUs from './aboutUs/aboutUs'
 import Menu from './menu/menu';
 import Contact from './contact/contact';
 import Testimonials from './testimonials/testimonials';
-
+import Footer from './footer/footer';
+import Header from './header/header';
 const Home = () => {
     return (
         <div>
+            <Header />
             <Slider />
             <AboutUs />
             <Menu />
             <Testimonials />
             <Contact />
+            <Footer />
         </div>
     )
 }

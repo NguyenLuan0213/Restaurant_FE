@@ -5,6 +5,8 @@ import './pay.css';
 import '../default.css';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 const Pay = () => {
   const navigate = useNavigate();
@@ -13,13 +15,14 @@ const Pay = () => {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
 
+
   const handlePhoneNumberChange = (event) => {
     setCustomerPhoneNumber(event.target.value);
   };
 
   const handleGetOrders = async () => {
     try {
-      const response = await authAPI().get(endpoints['PayByPhone']("0889595855"));
+      const response = await authAPI().get(endpoints['PayByPhone'](customerPhoneNumber));
       const orderData = response.data;
       setOrders(orderData);
       setError(null);
@@ -115,53 +118,6 @@ const Pay = () => {
     }
   }
 
-  const handlePayment = async (id) => {
-    // Lấy thông tin đơn hàng từ API
-    const orderData = await fetch(`https://localhost:7274/api/orders/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    if (!orderData.ok) {
-      alert('Lỗi khi lấy thông tin đơn hàng');
-      return;
-    }
-    const order = await orderData.json();
-
-    // Tạo session thanh toán
-    try {
-      const response = await fetch(`https://localhost:7274/api/checkout/create-checkout-session`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: order.id,
-          cashierId: order.cashierId,
-          customerId: order.customerId,
-          tableId: order.tableId,
-          orderTime: order.orderTime,
-          status: order.status,
-          totalPrice: order.totalPrice,
-        }),
-      });
-
-      if (!response.ok) {
-        alert('Lỗi khi tạo session thanh toán');
-        return;
-      }
-      else {
-
-        const responseData = await response.json();
-        const paymentSessionId = responseData.client_secret;
-        setPaymentSessionId(paymentSessionId);
-      }
-    } catch (error) {
-      alert('Lỗi khi thanh toán: ' + error.message);
-    }
-  }
-
   return (
     <div className="pay">
       <div className="container border">
@@ -203,7 +159,7 @@ const Pay = () => {
                                     <span>Món ăn: {meanItem.menuItemId}</span>
                                     <span>Số lượng: {meanItem.quantity || 0}</span>
                                     <span>
-                                      Tổng giá: {meanItem.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) || '0 VND'}
+                                      Tổng giá: {meanItem.totalPrice ? meanItem.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : '0 VND'}
                                     </span>
                                   </li>
                                 ))}
@@ -222,17 +178,13 @@ const Pay = () => {
                               {order.status === "Đã thanh toán" || order.status === "Đã hủy" ? (
                                 <></>
                               ) : (
-                                <div>
-                                  <button
-                                    className="btn btn-success mb-2 mt-2 ml-1"
-                                    style={{ marginRight: "20px" }}
-                                    onClick={() => handlePayment(order.id)} // Truyền ID đơn hàng khi ấn vào nút
-                                  >
-                                    Thanh Toán Online
-                                  </button>
+                                <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                                  <Link to={`/payment/${order.id}`}>
+                                    <button className="btn btn-success mb-2 mt-2">Thanh Toán Online</button>
+                                  </Link>
                                   {(rolesUser.includes("CASHIER") || rolesUser.includes("ADMIN")) && (
                                     <>
-                                      <button className="btn btn-success mb-2 mt-2 ml-1" style={{ marginRight: "20px" }} onClick={() => ShowHandalePaymentTT(order.id)}>
+                                      <button className="btn btn-success mb-2 mt-2" onClick={() => ShowHandalePaymentTT(order.id)}>
                                         Thanh Toán Tiền Mặt
                                       </button>
                                       <button className="btn btn-danger mb-2 mt-2" onClick={() => ShowHandalePaymentCancel(order.id)}>

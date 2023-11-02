@@ -16,19 +16,24 @@ import UserProfile from './components/User/User';
 import CartOrder from './components/cartOrder/cartOrder';
 import Payment from './components/payStripe/Payment';
 import CheckoutForm from "./components/payStripe/CheckoutForm";
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import SucceedPage from "./components/payStripe/SuccessPage";
 
 export const MyUserContext = createContext();
 
+const stripePromise = loadStripe("pk_test_51MlntRFtuguvBwBePPJrdA6ZJ6CtY5Or5sJqf1vH8qi1eT7oyikE8pZSgS8o70aI8qgZeInyfEv00yvMveVMl7Xu00yJetHxZl");
+
+
 export default function App() {
   const [user, state] = useReducer(MyUserReduce, cookie.load('user') || null)
-
 
   return (
     <div>
       <MyUserContext.Provider value={[user, state]}>
         <Router>
           <div>
-            <Header />
+            
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/menu" element={<MenuPage />} />
@@ -38,10 +43,18 @@ export default function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/current-user' element={<UserProfile />} />
               <Route path='/cartorder' element={<CartOrder />} />
-              <Route path='/payment' element={<Payment />} />
+              <Route
+                path="/payment/:orderID"
+                element={
+                  <Elements stripe={stripePromise}>
+                    <Payment />
+                  </Elements>
+                }
+              />
+              <Route path="/checkout-form" element={<CheckoutForm />} />
+              <Route path="/successpay" element={<SucceedPage />} />
             </Routes>
             <GoToTop />
-            <Footer />
           </div>
         </Router>
       </MyUserContext.Provider >

@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
     PaymentElement,
-    LinkAuthenticationElement,
     useStripe,
     useElements
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ orderID }) {
     const stripe = useStripe();
     const elements = useElements();
-
-    const [email, setEmail] = useState('');
     const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -56,19 +53,45 @@ export default function CheckoutForm() {
 
         setIsLoading(true);
 
+        if (error != null) {
+            setMessage(error.message);
+        } else {
+            try {
+                const formData = {
+                    orderId: orderID,
+                    status: 'Đã thanh toán',
+                    promotionId: null,
+                };
+                const response = await fetch(`https://localhost:7274/api/orders/paysuccces/${orderID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+
+                if (response.ok) {
+                    alert('Đã nhận tiền từ khách hàng và cập nhật trạng thái thành công.');
+                } else {
+                    alert('Lỗi khi cập nhật trạng thái thanh toán.');
+                }
+            } catch (error) {
+                console.error('Lỗi khi gọi API:', error);
+            }
+        }
+
+        console.log(error);
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
-                return_url: "http://localhost:3456",
+
+                return_url: "http://localhost:3456/successpay",
             },
         });
 
-        // This point will only be reached if there is an immediate error when
-        // confirming the payment. Otherwise, your customer will be redirected to
-        // your `return_url`. For some payment methods like iDEAL, your customer will
-        // be redirected to an intermediate site first to authorize the payment, then
-        // redirected to the `return_url`.
+
         if (error.type === "card_error" || error.type === "validation_error") {
             setMessage(error.message);
         } else {
@@ -84,18 +107,15 @@ export default function CheckoutForm() {
 
     return (
         <form id="payment-form" onSubmit={handleSubmit}>
-            <LinkAuthenticationElement
-                id="link-authentication-element"
-                onChange={(e) => setEmail(e.target.value)}
-            />
             <PaymentElement id="payment-element" options={paymentElementOptions} />
-            <button disabled={isLoading || !stripe || !elements} id="submit">
-                <span id="button-text">
-                    {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-                </span>
-            </button>
             {/* Show any error or success messages */}
             {message && <div id="payment-message">{message}</div>}
+            <button className="mt-3" disabled={isLoading || !stripe || !elements} id="submit" style={{ display: "block", margin: "0 auto" }}>
+                <span id="button-text" >
+                    {isLoading ? <div className="spinner" id="spinner"></div> : "Thanh Toán Ngay"}
+                </span>
+            </button>
         </form>
+
     );
 }

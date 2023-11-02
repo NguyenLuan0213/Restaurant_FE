@@ -7,6 +7,8 @@ import { MyUserContext } from "../../App";
 import { Navigate } from 'react-router-dom';
 import cookie from "react-cookies";
 import 'react-toastify/dist/ReactToastify.css'
+import Headers from "../header/header";
+import Footer from "../footer/footer";
 
 const Login = () => {
     const [username, setUsername] = useState()
@@ -42,33 +44,37 @@ const Login = () => {
         return (<Navigate to="/" />)
 
     return (
-        <div className="container" style={{ marginTop: '110px' }} >
-            <h1 className="text-center  text-success">ĐĂNG NHẬP</h1>
-            <Form className="content" onSubmit={login}>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Tên Đăng Nhập</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Tên Đăng Nhập"
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Mật Khẩu</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Mật Khẩu"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </Form.Group>
-                <Button type="submit" variant="primary">
-                    Đăng Nhập
-                </Button>{' '}
-                {loginError && (
-                    <p className="text-danger">Đăng nhập thất bại, sai tài khoản hoặc mật khẩu</p>
-                )}
-            </Form>
-        </div>
+        <>
+            <Headers />
+            <div className="container" style={{ marginTop: '110px' }} >
+                <h1 className="text-center  text-success">ĐĂNG NHẬP</h1>
+                <Form className="content" onSubmit={login}>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Tên Đăng Nhập</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Tên Đăng Nhập"
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Mật Khẩu</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Mật Khẩu"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Button type="submit" variant="primary" style={{ display: 'block', margin: '0 auto' }}>
+                        Đăng Nhập
+                    </Button>{' '}
+                    {loginError && (
+                        <p className="text-danger">Đăng nhập thất bại, sai tài khoản hoặc mật khẩu</p>
+                    )}
+                </Form>
+            </div>
+            <Footer />
+        </>
     );
 }
 

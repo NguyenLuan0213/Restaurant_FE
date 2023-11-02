@@ -25,6 +25,7 @@
     color: #333;
 }
 
+
 /* Địa chỉ và mô tả */
 .restaurant-details span {
     font-size: 16px;
@@ -51,6 +52,7 @@
     font-size: 20px;
     font-family: ui-monospace;
     color: #3333d5;
+    margin: 0px !important;
 }
 
 .restaurant .flex {

@@ -5,6 +5,8 @@ import apis, { authAPI, endpoints } from '../configs/api';
 import './cartOrder.css';
 import Cookies from 'js-cookie'; // Import thư viện js-cookie
 import { format, addHours, isAfter, isBefore } from 'date-fns'; // Import thư viện date-fns
+import Header from '../header/header';
+import Footer from '../footer/footer';
 
 const isBookingValid = (selectedDateTime) => {
     // Lấy thời gian hiện tại
@@ -236,6 +238,7 @@ const OrderCart = () => {
 
     return (
         <>
+            <Header />
             <div className="cart" style={{ marginTop: '100px' }}>
                 <div className="container border">
                     <div className='row-8 mt-2'>
@@ -390,6 +393,7 @@ const OrderCart = () => {
 
                 </div>
             </div>
+            <Footer />
         </>
     );
 };

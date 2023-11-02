@@ -74,10 +74,10 @@ const Header = () => {
                   }
                   {user === null || user === undefined ? (
                     <>
-                      <Link to="/register" className="btn btn-danger mx-2">
+                      <Link to="/register" className="btn-regis mx-2">
                         Đăng Ký
                       </Link>
-                      <Link to="/login/" className="btn btn-success">
+                      <Link to="/login/" className="btn-login">
                         Đăng Nhập
                       </Link>
                     </>

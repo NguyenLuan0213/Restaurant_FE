@@ -10,7 +10,7 @@ const Menu = () => {
   const [menuItems, setMenuItems] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showDefaultMenu, setShowDefaultMenu] = useState(true);
-  const [activeMenu, setActiveMenu] = useState(null); // Khởi tạo activeMenu là null
+  const [activeMenu, setActiveMenu] = useState("1"); // Khởi tạo activeMenu là null
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -86,7 +86,7 @@ const Menu = () => {
       sessionStorage.setItem('cart', JSON.stringify(cart));
 
       // Để biết là sản phẩm đã được thêm vào giỏ hàng
-      console.log(food.name + ' đã được thêm vào giỏ hàng.');
+      window.alert(food.name + ' đã được thêm vào giỏ hàng.');
     }
   }
 
