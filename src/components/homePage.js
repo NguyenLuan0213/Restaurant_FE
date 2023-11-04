@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 import Slider from './slider/slider';
 import AboutUs from './aboutUs/aboutUs'
 import Menu from './menu/menu';

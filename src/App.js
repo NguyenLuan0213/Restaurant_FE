@@ -33,7 +33,6 @@ export default function App() {
       <MyUserContext.Provider value={[user, state]}>
         <Router>
           <div>
-            
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/menu" element={<MenuPage />} />

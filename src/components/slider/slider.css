@@ -4,18 +4,29 @@
   overflow: hidden;
   position: relative;
 }
-  
+
 .slider img {
-  width: 150%;
+  width: 200%;
   height: 500px;
   object-fit: cover;
 }
-  
+
 @keyframes slide {
-    0% { transform: translateX(0%); }
-    33.33% { transform: translateX(-100%); }
-    66.66% { transform: translateX(-200%); }
-    100% { transform: translateX(-300%); }
+  0% {
+    transform: translateX(0%);
+  }
+
+  33.33% {
+    transform: translateX(-100%);
+  }
+
+  66.66% {
+    transform: translateX(-200%);
+  }
+
+  100% {
+    transform: translateX(-300%);
+  }
 }
 
 .slider-content {
@@ -45,8 +56,8 @@
 
 .slider-digit {
   position: absolute;
-  bottom: 15px; 
-  left: 50%; 
+  bottom: 15px;
+  left: 50%;
   background-color: transparent;
   padding: 5px;
   margin: 0 5px;
@@ -66,4 +77,3 @@
 .slider-digit .dot.active {
   background-color: #555;
 }
-

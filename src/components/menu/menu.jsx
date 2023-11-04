@@ -11,6 +11,7 @@ const Menu = () => {
   const [loading, setLoading] = useState(true);
   const [showDefaultMenu, setShowDefaultMenu] = useState(true);
   const [activeMenu, setActiveMenu] = useState("1"); // Khởi tạo activeMenu là null
+  const [cartCount, setCartCount] = useState(null);
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -64,33 +65,35 @@ const Menu = () => {
     sessionStorage.setItem('cart', JSON.stringify([]));
   }
 
+  const updateCartCount = (cart) => {
+    const totalCount = cart.reduce((count, item) => count + item.count, 0);
+    setCartCount(totalCount);
+    sessionStorage.setItem('cartCount', totalCount);
+  };
+
   function addToCart(food) {
-    // Lấy danh sách sản phẩm từ sessionStorage
-    var cart = JSON.parse(sessionStorage.getItem('cart'));
+    let cart = JSON.parse(sessionStorage.getItem('cart'));
 
-    // Kiểm tra xem cart có tồn tại và không phải là null
-    if (cart) {
-      // Tìm sản phẩm trong giỏ hàng theo id
-      var existingFood = cart.find(item => item.id === food.id);
-
-      if (existingFood) {
-        // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng lên 1
-        existingFood.count += 1;
-      } else {
-        // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm nó vào danh sách
-        food.count = 1;
-        cart.push(food);
-      }
-
-      // Lưu lại danh sách giỏ hàng mới vào sessionStorage
-      sessionStorage.setItem('cart', JSON.stringify(cart));
-
-      // Để biết là sản phẩm đã được thêm vào giỏ hàng
-      window.alert(food.name + ' đã được thêm vào giỏ hàng.');
+    if (!cart) {
+      cart = [];
     }
+
+    const existingFood = cart.find(item => item.id === food.id);
+
+    if (existingFood) {
+      existingFood.count += 1;
+    } else {
+      food.count = 1;
+      cart.push(food);
+    }
+
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+    window.alert(food.name + ' đã được thêm vào giỏ hàng.');
+
+    const cartUpdatedEvent = new CustomEvent('cartUpdated', { detail: cart.length });
+    window.dispatchEvent(cartUpdatedEvent);
+    updateCartCount(cart);
   }
-
-
 
   if (menu === null) {
     return <Loading />;

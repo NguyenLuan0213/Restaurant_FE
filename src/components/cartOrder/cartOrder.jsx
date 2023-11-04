@@ -46,7 +46,6 @@ const OrderCart = () => {
             // Cập nhật biến state 'cart' với danh sách sản phẩm từ sessionStorage
             setCart(parsedCart);
         } else {
-            console.log('Không tìm thấy dữ liệu của cart trong sessionStorage.');
         }
     }, []);
 
@@ -58,7 +57,6 @@ const OrderCart = () => {
             const parsedtable = JSON.parse(tableData);
             setTable(parsedtable); // Cập nhật table thành một mảng chứa thông tin bàn
         } else {
-            console.log('Không tìm thấy dữ liệu của bàn trong sessionStorage.');
         }
     }, []);
 
@@ -81,6 +79,9 @@ const OrderCart = () => {
 
             sessionStorage.setItem('cart', JSON.stringify(updatedCart));
             setCart(updatedCart);
+
+            const event = new CustomEvent('cartUpdated', { detail: updatedCart.length });
+            window.dispatchEvent(event);
         }
     };
 
@@ -100,7 +101,6 @@ const OrderCart = () => {
     useEffect(() => {
         // Check if the cookie contains user data
         const userFromCookie = Cookies.get("user");
-        console.log(userFromCookie)
         if (userFromCookie) {
             const userData = JSON.parse(userFromCookie);
             // If there's user data in the cookie, use it to populate the fields
@@ -212,6 +212,10 @@ const OrderCart = () => {
                 sessionStorage.removeItem('table');
                 setCart([]);
                 setTable([]);
+
+                const event = new CustomEvent('cartUpdated', { detail: 0 });
+                window.dispatchEvent(event);
+
                 window.alert('Thanh toán thành công. Mời đặt bàn tiếp');
                 window.location.href = '/restaurant';
             } catch (ex) {

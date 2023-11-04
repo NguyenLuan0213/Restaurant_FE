@@ -6,12 +6,51 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { MyUserContext } from "../../App";
 import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   const [user, state] = useContext(MyUserContext);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [exit, setExit] = useState(false);
   const navigate = useNavigate();
+  // Khởi tạo cartCount từ sessionStorage nếu có hoặc 0 nếu không
+  const initialCartCount = parseInt(sessionStorage.getItem('cartCount'), 10) || 0;
+  const [cartCount, setCartCount] = useState(initialCartCount);
+
+  // Lắng nghe sự kiện tùy chỉnh để cập nhật số lượng trong giỏ hàng
+  useEffect(() => {
+    const updateCartCount = (event) => {
+      setCartCount(event.detail);
+    };
+
+    window.addEventListener('cartUpdated', updateCartCount);
+
+    // Xóa lắng nghe khi thành phần bị hủy
+    return () => {
+      window.removeEventListener('cartUpdated', updateCartCount);
+    };
+  }, []);
+
+  // Khôi phục trạng thái giỏ hàng từ sau khi component được tạo
+  useEffect(() => {
+    const storedCartCount = sessionStorage.getItem('cartCount');
+    if (storedCartCount !== null) {
+      setCartCount(parseInt(storedCartCount, 10));
+    }
+  }, []);
+
+  // Lưu trạng thái giỏ hàng vào khi số lượng thay đổi
+  useEffect(() => {
+    sessionStorage.setItem('cartCount', cartCount.toString());
+  }, [cartCount]);
+
+  useEffect(() => {
+    if (cartCount === 0) {
+      // Reset cartCount về 0 sau khi đặt bàn thành công
+      setCartCount(0);
+    }
+  }, [cartCount]);
 
   const handleLogout = () => {
     setShowLogoutModal(true); // Khi nhấn nút Đăng Xuất, hiển thị hộp thoại
@@ -43,7 +82,6 @@ const Header = () => {
         <header className="p-2 border-bottom">
           <div className="container">
             <div className="d-flex align-items-center justify-content-between">
-
               <div className='d-flex align-items-center ml-auto mt-2'>
                 <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
                   <img src="https://res.cloudinary.com/dkba7robk/image/upload/v1696385680/impchzofm7h23szpxxr8.png" alt="Icon" width="40" height="32" />
@@ -57,9 +95,10 @@ const Header = () => {
 
               <div>
                 <ul className='d-flex align-items-center ml-auto mt-2'>
-                  <li>
-                    <a href="/cartOrder" className="nav-link px-2 link-dark ">
-                      <img src="https://res.cloudinary.com/dkba7robk/image/upload/v1696476312/rmixzhdffpsvio62we2u.jpg" alt="Icon" width="35" height="28" />
+                  <li className='customCart'>
+                    <a href="/cartOrder" className="nav-link px-2 link-dark">
+                      <FontAwesomeIcon icon={faCartShopping} className='fa-2x' />
+                      <span className="cart-count">{cartCount}</span>
                     </a>
                   </li>
                   <Form className="col-12 col-lg-auto mb-3 mb-lg-0 ">

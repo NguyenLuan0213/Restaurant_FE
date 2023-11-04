@@ -1,7 +1,7 @@
 /* Bố cục của từng nhà hàng */
 .restaurant-details {
     width: 100% !important;
-    margin: 20px;
+    margin: 0 20px;
     display: inline-block;
     vertical-align: top;
     width: calc(33.33% - 40px);

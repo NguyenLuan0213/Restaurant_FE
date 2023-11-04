@@ -4,6 +4,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useParams } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import "./payment.css";
+import Footer from '../footer/footer';
+import Header from '../header/header';
+
 import { set } from "date-fns";
 
 const stripePromise = loadStripe("pk_test_51MlntRFtuguvBwBePPJrdA6ZJ6CtY5Or5sJqf1vH8qi1eT7oyikE8pZSgS8o70aI8qgZeInyfEv00yvMveVMl7Xu00yJetHxZl")
@@ -94,60 +97,64 @@ function Payment() {
     }, [orderData]);
 
     return (
-        <div className="container" style={{ marginTop: "110px" }}>
-            <h1 className="h1-edit">THANH TOÁN</h1>
-            <div className="row" style={{ border: '1px solid #ccc' }}>
-                <div className="col-6" style={{ borderRight: '1px solid #ccc', paddingRight: '10px' }}>
-                    <h2 className="h2-edit">ĐẶT BÀN SỐ {orderID}</h2>
-                    <div className="row">
-                        <div className="col-6 " style={{ borderRight: '1px solid #ccc', borderTop: '1px solid #ccc' }}>
-                            <p className="p_tt">Thông tin khách hàng</p>
-                            <div>
-                                <div className="edit-div">
-                                    <span className="span-edit">Tên Khách Hàng:</span>
-                                    <span className="span-edit">{orderDataPay && orderDataPay.customer.fullname}</span>
-                                </div>
-                                <div className="edit-div">
-                                    <span className="span-edit">Email:</span>
-                                    <span className="span-edit">{orderDataPay && orderDataPay.customer.email}</span>
-                                </div>
-                                <div className="edit-div">
-                                    <span className="span-edit">Số điện thoại:</span>
-                                    <span className="span-edit">{orderDataPay && orderDataPay.customer.phoneNumber}</span>
+        <>
+            <Header />
+            <div className="container" style={{ marginTop: "110px" }}>
+                <h1 className="h1-edit">THANH TOÁN</h1>
+                <div className="row" style={{ border: '1px solid #ccc' }}>
+                    <div className="col-6" style={{ borderRight: '1px solid #ccc', paddingRight: '10px' }}>
+                        <h2 className="h2-edit">ĐẶT BÀN SỐ {orderID}</h2>
+                        <div className="row">
+                            <div className="col-6 " style={{ borderRight: '1px solid #ccc', borderTop: '1px solid #ccc' }}>
+                                <p className="p_tt">Thông tin khách hàng</p>
+                                <div>
+                                    <div className="edit-div">
+                                        <span className="span-edit">Tên Khách Hàng:</span>
+                                        <span className="span-edit">{orderDataPay && orderDataPay.customer.fullname}</span>
+                                    </div>
+                                    <div className="edit-div">
+                                        <span className="span-edit">Email:</span>
+                                        <span className="span-edit">{orderDataPay && orderDataPay.customer.email}</span>
+                                    </div>
+                                    <div className="edit-div">
+                                        <span className="span-edit">Số điện thoại:</span>
+                                        <span className="span-edit">{orderDataPay && orderDataPay.customer.phoneNumber}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-6 " style={{ borderTop: '1px solid #ccc' }}>
-                            <p className="p_tt">Thông tin đặt bàn</p>
-                            <div>
-                                <div className="edit-div">
-                                    <span className="span-edit">Tên Order:</span>
-                                    <span className="span-edit">{orderDataPay && orderID}</span>
-                                </div>
-                                <div className="edit-div">
-                                    <span className="span-edit">Ngày Đặt Bàn:</span>
-                                    <span className="span-edit">{orderDataPay && orderDataPay.orderTime}</span>
-                                </div>
-                                <div className="edit-div">
-                                    <span className="span-edit">Số tiền:</span>
-                                    <span className="span-edit">
-                                        {orderDataPay && new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(orderDataPay.totalPrice)}
-                                    </span>
+                            <div className="col-6 " style={{ borderTop: '1px solid #ccc' }}>
+                                <p className="p_tt">Thông tin đặt bàn</p>
+                                <div>
+                                    <div className="edit-div">
+                                        <span className="span-edit">Tên Order:</span>
+                                        <span className="span-edit">{orderDataPay && orderID}</span>
+                                    </div>
+                                    <div className="edit-div">
+                                        <span className="span-edit">Ngày Đặt Bàn:</span>
+                                        <span className="span-edit">{orderDataPay && orderDataPay.orderTime}</span>
+                                    </div>
+                                    <div className="edit-div">
+                                        <span className="span-edit">Số tiền:</span>
+                                        <span className="span-edit">
+                                            {orderDataPay && new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(orderDataPay.totalPrice)}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="col-6 mt-3 mb-3">
-                    {clientSecret && stripePromise && (
-                        <Elements stripe={stripePromise} options={{ clientSecret }}>
-                            <CheckoutForm orderID={orderID}/>
-                        </Elements>
-                    )}
+                    <div className="col-6 mt-3 mb-3">
+                        {clientSecret && stripePromise && (
+                            <Elements stripe={stripePromise} options={{ clientSecret }}>
+                                <CheckoutForm orderID={orderID} />
+                            </Elements>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+            <Footer />
+        </>
     );
 }
 

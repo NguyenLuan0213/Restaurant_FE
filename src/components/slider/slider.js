@@ -5,11 +5,11 @@ import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 
 const Slider = () => {
   const images = [
-    '/images/slider/image1.jpg',
-    '/images/slider/image2.jpg',
-    '/images/slider/image3.jpg',
-    '/images/slider/image4.jpg',
-    '/images/slider/image5.jpg'
+    'https://res.cloudinary.com/dkba7robk/image/upload/v1696604138/a8ejftwrzvyavfsml2oc.jpg',
+    'https://res.cloudinary.com/dkba7robk/image/upload/v1696604137/dlaue3rktoamoivgqm1o.jpg',
+    'https://res.cloudinary.com/dkba7robk/image/upload/v1696601830/pktf7azpntuisyvejnu2.jpg',
+    'https://res.cloudinary.com/dkba7robk/image/upload/v1696601825/hf1k9u4o2ykv5zd9d2bn.jpg',
+    'https://res.cloudinary.com/dkba7robk/image/upload/v1696601823/gn4fr8as9jmreqekkkux.jpg'
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -30,7 +30,7 @@ const Slider = () => {
   }, [handleNext]);
 
   return (
-    <div className="container" style={{ marginTop: '100px' }}>
+    <div className="container" style={{ marginTop: '105px' }}>
       <div className="slider">
         <div className='slider-content'><img src={images[currentImage]} alt={`Slide ${currentImage}`} /></div>
         <button className="slider-btn prev" onClick={handlePrev}><FontAwesomeIcon icon={faCaretLeft} /></button>

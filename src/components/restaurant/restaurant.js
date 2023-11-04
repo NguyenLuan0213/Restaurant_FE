@@ -3,9 +3,19 @@ import api, { authAPI, endpoints } from '../configs/api';
 import './restaurant.css';
 import '../default.css';
 import Loading from '../layout/Loading';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Restaurant = () => {
   const [restaurants, setRestaurants] = useState([]);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
   useEffect(() => {
     const fetchRestaurantData = async () => {
@@ -30,9 +40,8 @@ const Restaurant = () => {
         <div className="section-header">
           <h2 className='h2Custum'>THÔNG TIN CÁC NHÀ HÀNG</h2>
         </div>
-
-        {restaurants.map((restaurant) => (
-          <div className="flex">
+        <Slider {...settings}>
+          {restaurants.map((restaurant) => (
             <div key={restaurant.id} className="restaurant-details row-wrap">
               <div className="restaurant-form-bg">
                 <h2>{restaurant.name}</h2>
@@ -43,8 +52,8 @@ const Restaurant = () => {
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </Slider>
       </div>
     </section>
   );

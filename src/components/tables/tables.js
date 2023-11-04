@@ -76,7 +76,7 @@ const Tables = () => {
 
 
     return (
-        <div className="container" style={{ marginTop: "80px" }}>
+        <div className="container" >
             <h1 className="custom-font text-center">Thông tin bàn còn trống</h1>
             <div className="text-center">
                 <label htmlFor="restaurant"></label>

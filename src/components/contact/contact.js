@@ -193,7 +193,9 @@ const Contact = () => {
             </div>
           </div>
         </div>
-
+        <div>
+          <h2>ĐÁNH GIÁ NHÀ HÀNG</h2>
+        </div>
         <form onSubmit={handleSubmit} className="contact-form">
           <div className="row-form flex">
             <div className="col-form form-group">
