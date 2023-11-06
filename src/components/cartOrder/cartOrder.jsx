@@ -121,8 +121,17 @@ const OrderCart = () => {
     const handlePayment = async () => {
         // Kiểm tra nếu giỏ hàng hoặc thông tin bàn bị rỗng
         if (table.length === 0) {
-            window.alert('Thanh toán thất bại. Không có sản phẩm trong đơn hàng hoặc thông tin bàn bị thiếu mời bạn đặt bàn lại.');
+            window.alert('Đặt hàng thất bại. Không có sản phẩm trong đơn hàng hoặc thông tin bàn bị thiếu mời bạn đặt bàn lại.');
             return window.location.href = '/restaurant';
+        }
+
+        const restaurantIdOfTable = table[0].restaurantId;
+        const mismatchedItems = cart.filter(item => item.restaurantId !== restaurantIdOfTable);
+
+        if (mismatchedItems.length > 0) {
+            const mismatchedItemNames = mismatchedItems.map(item => item.name).join(', ');
+            window.alert(`Đặt hàng thất bại. Các món ăn sau không thuộc nhà hàng của thông tin bàn: ${mismatchedItemNames}. Vui lòng kiểm tra lại.`);
+            return;
         }
 
         // Gửi thông tin giỏ hàng và thông tin bàn lên server
@@ -210,13 +219,15 @@ const OrderCart = () => {
                 // Xóa giỏ hàng và thông tin bàn từ sessionStorage
                 sessionStorage.removeItem('cart');
                 sessionStorage.removeItem('table');
+                sessionStorage.removeItem('restaurant');
                 setCart([]);
                 setTable([]);
+                setRestaurantData([]);
 
                 const event = new CustomEvent('cartUpdated', { detail: 0 });
                 window.dispatchEvent(event);
 
-                window.alert('Thanh toán thành công. Mời đặt bàn tiếp');
+                window.alert('Đặt bàn thành công. Mời đặt bàn tiếp');
                 window.location.href = '/restaurant';
             } catch (ex) {
                 console.error(ex);
@@ -240,6 +251,21 @@ const OrderCart = () => {
         setFormValid(isFormValid);
     };
 
+    const [restaurantData, setRestaurantData] = useState([]);
+
+    useEffect(() => {
+        // Lấy danh sách sản phẩm từ sessionStorage
+        const storedRestaurant = sessionStorage.getItem('restaurant');
+
+        if (storedRestaurant) {
+            // Chuyển đổi chuỗi JSON thành mảng JavaScript
+            const parsedRes = JSON.parse(storedRestaurant);
+            // Cập nhật biến state 'cart' với danh sách sản phẩm từ sessionStorage
+            setRestaurantData(parsedRes);
+        } else {
+        }
+    }, []);
+
     return (
         <>
             <Header />
@@ -247,8 +273,6 @@ const OrderCart = () => {
                 <div className="container border">
                     <div className='row-8 mt-2'>
                         <h2 className='h2Custum'>GIỎ HÀNG</h2>
-
-
                         {cart.length === 0 && table.length === 0 && (
                             <div className="emptyCart">
                                 <p className='h3Custum'>Giỏ hàng của bạn đang trống. Vui lòng nhắn nút dưới để đặt bàn</p>
@@ -257,7 +281,6 @@ const OrderCart = () => {
                                 </button>
                             </div>
                         )}
-
                         {cart.length > 0 && (
                             <>
                                 <h4 className='h3Custum'>THÔNG TIN MÓN ĂN</h4>
@@ -345,12 +368,10 @@ const OrderCart = () => {
                                 </div>
                                 <div className='flex between' style={{ flexWrap: 'wrap' }}>
                                     <div className="col">
-                                        <div className='remind'>Chọn Chi Nhánh (*)</div>
-                                        <select name="restaurant" id="restaurant" required onChange={handleInputChange} value={formData.restaurant}>
-                                            <option value="CT">Nhà hàng Chí Tiên</option>
-                                            <option value="CT2">Nhà hàng Chí Tiên 2</option>
-                                            <option value="ST">Nhà hàng Sơn Trà</option>
-                                        </select>
+                                        <div className='remind'>Chi Nhánh Nhà Hàng: </div>
+                                        <div style={{ marginLeft: "15px" }}>
+                                            <span style={{ color: "red" }}>{restaurantData.name}</span>
+                                        </div>
                                     </div>
                                     <div className="col">
                                         <div className='remind'>Ngày Giờ Đặt (*)</div>

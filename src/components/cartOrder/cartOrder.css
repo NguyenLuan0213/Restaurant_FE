@@ -21,10 +21,8 @@
     justify-content: space-between;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    /* Để các phần tử con bắt đầu từ bên trái */
+    align-items: center;
     margin-bottom: 10px;
-    /* Khoảng cách giữa các cartItem */
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #fff;

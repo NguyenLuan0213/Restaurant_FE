@@ -61,7 +61,6 @@ const Tables = () => {
 
             // Lưu thông tin bàn vào sessionStorage
             sessionStorage.setItem('table', JSON.stringify([tableInfo]));
-
             const selectedRestaurant = restaurants.find(restaurant => restaurant.id === table.restaurantId);
             sessionStorage.setItem('restaurant', JSON.stringify(selectedRestaurant));
 

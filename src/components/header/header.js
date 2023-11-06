@@ -128,7 +128,6 @@ const Header = () => {
                           <img src={user.image} alt="mdo" width="32" height="32" className="rounded-circle" />
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                          <Dropdown.Item href="#">CHỈNH SỬA</Dropdown.Item>
                           <Dropdown.Item href="/current-user">THÔNG TIN CÁ NHÂN</Dropdown.Item>
                           <Dropdown.Divider />
                           <Dropdown.Item href="" onClick={handleLogout}>ĐĂNG XUẤT</Dropdown.Item>

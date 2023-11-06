@@ -47,7 +47,7 @@ const Restaurant = () => {
                 <h2>{restaurant.name}</h2>
                 <span><strong>Address:</strong> {restaurant.address}</span>
                 <span><strong>Description:</strong> {restaurant.description}</span>
-                <div className="image-container" style={{ paddingTop: "10px" }}>
+                <div className="image-container" style={{ paddingTop: "5px" }}>
                   <img src={restaurant.image} alt={restaurant.name} />
                 </div>
               </div>

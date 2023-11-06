@@ -5,7 +5,7 @@ import {
     useElements
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm({ orderID }) {
+export default function CheckoutForm({ orderID, promoId }) {
     const stripe = useStripe();
     const elements = useElements();
     const [message, setMessage] = useState(null);
@@ -60,7 +60,7 @@ export default function CheckoutForm({ orderID }) {
                 const formData = {
                     orderId: orderID,
                     status: 'Đã thanh toán',
-                    promotionId: null,
+                    promotionId: promoId,
                 };
                 const response = await fetch(`https://localhost:7274/api/orders/paysuccces/${orderID}`, {
                     method: 'PUT',

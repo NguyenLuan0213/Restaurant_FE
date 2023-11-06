@@ -31,3 +31,19 @@
 .h2-edit {
     font-size: 26px;
 }
+
+.edit-promo {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+/* styles.css */
+.button-edit {
+    background-color: #04db12;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
