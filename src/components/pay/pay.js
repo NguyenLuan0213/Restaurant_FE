@@ -118,6 +118,35 @@ const Pay = () => {
     }
   }
 
+  const handleOutBill = async (billId) => {
+    try {
+      // Gửi yêu cầu để xuất hóa đơn từ API
+      const response = await fetch(`https://localhost:7274/api/bill/export/${billId}`);
+      if (response.ok) {
+        // Chuyển đổi hóa đơn thành một blob
+        const blob = await response.blob();
+
+        // Tạo một URL cho blob
+        const url = window.URL.createObjectURL(blob);
+
+        // Tạo một thẻ <a> ẩn để tải xuống tệp hóa đơn
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Bill_${billId}.txt`;
+
+        // Thực hiện sự kiện nhấp vào thẻ <a> để tải xuống hóa đơn
+        a.click();
+
+        // Giải phóng URL và thẻ <a>
+        window.URL.revokeObjectURL(url);
+      } else {
+        console.error('Lỗi khi tải xuống hóa đơn');
+      }
+    } catch (error) {
+      console.error('Lỗi khi xuất hóa đơn:', error);
+    }
+  };
+
   return (
     <div className="pay">
       <div className="container border">
@@ -141,7 +170,7 @@ const Pay = () => {
               <div className="mt-3">
                 <ul>
                   <div className="mt-3">
-                    <h3>Danh sách đơn hàng</h3>
+                    <h3>DANH SÁCH ĐƠN HÀNG</h3>
                     <ul>
                       {orders.map((order) => (
                         <div key={order.id}>
@@ -195,18 +224,25 @@ const Pay = () => {
                                 </div>
                               )}
                               {(order.status == "Đã thanh toán" && (
-                                <span
-                                  style={{
-                                    marginTop: "5px",
-                                    fontSize: "18px",
-                                    padding: "4px 8px",
-                                    backgroundColor: "#22ee22",
-                                    color: "white",
-                                    marginBottom: "5px",
-                                  }}
-                                >
-                                  {order.status.toUpperCase()}
-                                </span>
+                                <div>
+                                  <span
+                                    style={{
+                                      marginTop: "5px",
+                                      fontSize: "18px",
+                                      padding: "4px 8px",
+                                      backgroundColor: "#22ee22",
+                                      color: "white",
+                                      marginBottom: "5px",
+                                    }}
+                                  >
+                                    {order.status.toUpperCase()}
+                                  </span>
+                                  {(rolesUser.includes("CASHIER") || rolesUser.includes("ADMIN")) && (
+                                    <button className="btn btn-success mb-2 mt-2" onClick={() => handleOutBill(order.id)}>
+                                      Xuất Hóa Đơn
+                                    </button>
+                                  )}
+                                </div>
                               )) || (order.status == "Đã hủy" && (
                                 <span
                                   style={{
